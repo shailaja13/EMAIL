@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:email="http://www.mulesoft.org/schema/mule/email" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/email http://www.mulesoft.org/schema/mule/email/current/mule-email.xsd">
+	<email:smtp-config name="Email_SMTP" doc:name="Email SMTP" doc:id="17a8cd26-7ce9-457e-85db-77d05545065d" >
+		<email:smtp-connection host="smtp.gmail.com" port="587" user="mule4hyd@gmail.com" password="6Tfcvgy7@" >
+			<email:properties >
+				<email:property key="mail.smtp.starttls.enable" value="true" />
+			</email:properties>
+		</email:smtp-connection>
+	</email:smtp-config>
+	<flow name="email-sendFlow" doc:id="0dc3d5cd-7294-4b5f-bc48-7265733bb816" >
+		<scheduler doc:name="Scheduler" doc:id="6fe2179e-36ff-4dd0-8172-d056e74c02c0" >
+			<scheduling-strategy >
+				<fixed-frequency />
+			</scheduling-strategy>
+		</scheduler>
+		<logger level="INFO" doc:name="Logger" doc:id="d0fde5a9-eeb2-4fbc-8c0f-fee8108d7386" message="flow===="/>
+		<email:send doc:name="Send" doc:id="fbdb770b-6041-4ba5-b316-3ed7585d9ba4" config-ref="Email_SMTP" fromAddress="mule4hyd@gmail.com" subject='#["job done"]'>
+			<email:to-addresses >
+				<email:to-address value="mule4hyd@gmail.com" />
+			</email:to-addresses>
+		</email:send>
+		<logger level="INFO" doc:name="Logger" doc:id="c9ee74ae-44a7-4540-97a6-3bde51cedf79" message="#[payload]"/>
+	</flow>
+</mule>
