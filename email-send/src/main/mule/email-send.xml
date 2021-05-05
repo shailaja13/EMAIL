@@ -24,5 +24,6 @@ http://www.mulesoft.org/schema/mule/email http://www.mulesoft.org/schema/mule/em
 			</email:to-addresses>
 		</email:send>
 		<logger level="INFO" doc:name="Logger" doc:id="c9ee74ae-44a7-4540-97a6-3bde51cedf79" message="#[payload]"/>
+		<logger level="INFO" doc:name="Logger" doc:id="9e994587-f48e-40a4-9b01-91e0988a9a66" message="#[payload]"/>
 	</flow>
 </mule>
